@@ -1,0 +1,38 @@
+@page "/registro-usuario"
+@using Data.Models
+<h3>Registrar Nuevo Usuario</h3>
+<EditForm Model= "@Usuario" OnValidSubmit="RegistrarUsuario">
+    <div class="form-field">
+        <label>Nombre:</label>
+        <div>
+            <InputText @bind-Value="@Usuario.Nombre"/>
+            <ValidationMessage For="@(() => Usuario.Nombre)"/>
+        </div>
+        <labe2>Cedula:</labe2>
+        <div>
+            <InputText @bind-Value="@Usuario.Cedula"/>
+            <ValidationMessage For="@(() => Usuario.Cedula)"/>
+        </div>
+         <labe2>Nombre de Usuario:</labe2>
+        <div>
+            <InputText @bind-Value="@Usuario.Nickname"/>
+            <ValidationMessage For="@(() => Usuario.Nickname)"/>
+        </div>
+         <label>Clave:</label>
+        <div>
+            <InputText @bind-Value="@Usuario.Password"/>
+            <ValidationMessage For="@(() => Usuario.Password)"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Crear</button>
+    <DataAnnotationsValidator />
+</EditForm>
+
+@code{
+Usuario Usuario = new Usuario();
+async void RegistrarUsuario()
+{
+    var r = await UsuarioService.Crear(Usuario);
+    if(r) Usuario = new Usuario();
+}
+}

@@ -1,9 +1,21 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+<AuthorizeView>
+    <Authorized Context="AuthenticationState">
+        <h1>Inicio</h1>
+        <h2>Bienvenido a la aplicación</h2>
+    </Authorized>
+    <NotAuthorized>
+        <h2>Debe identificarse para poder acceder a la aplicación</h2>
+          <h2>Registrarme como colmado</h2>
+          <div>
+    <a class="btn btn-success" href="registro-colmado">Registrar colmado</a>
+</div>
+<h2>Registrarme como usuario</h2>
+          <div>
+    <a class="btn btn-success" href="registro-colmado">Registrar Usuario</a>
+</div>
+         
+    </NotAuthorized>
+</AuthorizeView>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />

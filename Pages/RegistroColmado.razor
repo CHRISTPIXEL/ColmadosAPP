@@ -1,0 +1,53 @@
+@page "/registro-colmado"
+@using Data.Models
+<h1>Registrar Colmado</h1>
+<EditForm Model= "@Colmado" OnValidSubmit="RegistrarColmado">
+    <div class="form-field">
+        <label>Nombre:</label>
+        <div>
+            <InputText @bind-Value="@Colmado.Nombre"/>
+            <ValidationMessage For="@(() => Colmado.Nombre)"/>
+        </div>
+         <labe2>Telefono:</labe2>
+        <div>
+            <InputText @bind-Value="@Colmado.Telefono"/>
+            <ValidationMessage For="@(() => Colmado.Telefono)"/>
+        </div>
+         <labe2>Direccion:</labe2>
+        <div>
+            <InputText @bind-Value="@Colmado.Direccion"/>
+            <ValidationMessage For="@(() => Colmado.Direccion)"/>
+        </div>
+         <labe2>Nombre del propietario:</labe2>
+        <div>
+            <InputText @bind-Value="@Colmado.Propietario"/>
+            <ValidationMessage For="@(() => Colmado.Propietario)"/>
+        </div>
+         <labe2>Fecha:</labe2>
+        <div>
+            <InputDate @bind-Value="@Colmado.Fecha"/>
+            <ValidationMessage For="@(() => Colmado.Fecha)"/>
+        </div>
+         <labe2>Cedula dl propietario:</labe2>
+        <div>
+            <InputText @bind-Value="@Colmado.Cedula"/>
+            <ValidationMessage For="@(() => Colmado.Cedula)"/>
+        </div>
+         <label>Clave:</label>
+        <div>
+            <InputText @bind-Value="@Colmado.Password"/>
+            <ValidationMessage For="@(() => Colmado.Password)"/>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Crear</button>
+    <DataAnnotationsValidator />
+</EditForm>
+
+@code{
+Colmado Colmado = new Colmado();
+async void RegistrarColmado()
+{
+    var r = await ColmadoService.Crear(Colmado);
+    if(r) Colmado = new Colmado();
+}
+}
